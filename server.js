@@ -2,7 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import connect from './database/conn.js';
-import router from './router/student_route.js';
+import studentrouter from './router/student_route.js';
+import mentorrouter from './router/mentor_route.js';
 
 const app = express();
 
@@ -22,7 +23,8 @@ app.get('/', (req, res) => {
 
 
 /** api routes */
-app.use('/api', router)
+app.use('/api', studentrouter)
+app.use('/api', mentorrouter)
 
 /** start server only when we have valid connection */
 connect().then(() => {
